@@ -1,11 +1,17 @@
-package todoist
+package main
 
 import (
-    "fmt"
-    
+    "log"
 
+    "github.com/joho/godotenv"
+    "todoist-cli/cmd"
 )
 
 func main() {
-    fmt.Println("Hello World")
+    // Load .env file
+    err := godotenv.Load()
+    if err != nil {
+        log.Fatalf("Error loading .env file")
+    }
+    cmd.Execute()
 }
