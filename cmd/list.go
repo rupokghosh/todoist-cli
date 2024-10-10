@@ -32,6 +32,10 @@ var listCmd = &cobra.Command{
         var tasks []struct {
             ID      string `json:"id"`
             Content string `json:"content"`
+			Priority int `json:"priority"`
+			DueDate struct {
+				Date string `json:"date"`
+			} `json:"due"`
         }
 
         err = json.Unmarshal(resp.Body(), &tasks)
@@ -45,12 +49,11 @@ var listCmd = &cobra.Command{
         }
 
         for i, task := range tasks {
-            fmt.Printf("%d. %s\n", i+1, task.Content)
+            fmt.Printf("%d. %s [Due: %s] [%s%d]\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority)
         }
     },
 }
 
 func init() {
-    // Register listCmd to the rootCmd
     rootCmd.AddCommand(listCmd)
 }

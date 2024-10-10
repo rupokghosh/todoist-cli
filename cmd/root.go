@@ -11,7 +11,6 @@ var rootCmd = &cobra.Command{
     Short: "A simple CLI to interact with Todoist",
 }
 
-// Execute runs the root command (called from main)
 func Execute() {
     if err := rootCmd.Execute(); err != nil {
         log.Fatal(err)
