@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-    Use:   "todoist-cli",
+    Use:   "todoist",
     Short: "A simple CLI to interact with Todoist",
 }
 
