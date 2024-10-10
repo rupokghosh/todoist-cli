@@ -11,6 +11,9 @@ import (
 
 const todoistAPIBase = "https://api.todoist.com/rest/v2"
 
+func init () {
+    rootCmd.AddCommand(listCmd)
+}
 var listCmd = &cobra.Command{
     Use:   "list",
     Short: "List current active tasks",
