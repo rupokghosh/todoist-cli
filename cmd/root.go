@@ -7,12 +7,13 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-    Use:   "todoist",
+    Use:   "todoist-cli",
     Short: "A simple CLI to interact with Todoist",
 }
 
 func Execute() {
-    if err := rootCmd.Execute(); err != nil {
+    err := rootCmd.Execute()
+    if err != nil {
         log.Fatal(err)
         os.Exit(1)
     }
