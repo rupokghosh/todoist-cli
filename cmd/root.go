@@ -18,8 +18,7 @@ func Execute() {
     }
 }
 
-func init() {
-    
+func init() {    
     rootCmd.AddCommand(listCmd)
-    
+    rootCmd.AddCommand(addCmd)
 }

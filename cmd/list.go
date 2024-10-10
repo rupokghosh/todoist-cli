@@ -47,13 +47,10 @@ var listCmd = &cobra.Command{
             fmt.Println("No active tasks found.")
             return
         }
-
         for i, task := range tasks {
             fmt.Printf("%d. %s [Due: %s] [%s%d]\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority)
         }
     },
 }
 
-func init() {
-    rootCmd.AddCommand(listCmd)
-}
+
