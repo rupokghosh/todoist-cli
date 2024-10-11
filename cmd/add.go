@@ -8,14 +8,16 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/go-resty/resty/v2"
 	"github.com/google/uuid"
+	"time"
+	"strconv"
+	"strings"
 )
 
-const todoistAPIBase = "https://api.todoist.com/rest/v2"
 
 type Task struct {
 	Content string `json:"content"`
 	Due string `json:"due_string"`
-	Priority string `json:"priority"`
+	Priority int `json:"priority"`
 	DueLang string `json:"due_lang"`
 }
 
@@ -30,15 +32,35 @@ var addCmd = &cobra.Command{
 
 		var tasks Task
 		id := uuid.New().String()	// generate uuid for header
+		time := time.Now().Format("2006-01-02")
 
+		// read input and give it to task
 		scanner := bufio.NewReader(os.Stdin)
 		fmt.Println("Name your task:")
 		tasks.Content, _ = scanner.ReadString('\n')
+		tasks.Content = strings.TrimSpace(tasks.Content)
+		fmt.Println("Enter the due date, or leave empty for today's date:")
 		tasks.Due, _ = scanner.ReadString('\n')
-		tasks.Priority, _ = scanner.ReadString('\n')
+		tasks.Due = strings.TrimSpace(tasks.Due)
+		if tasks.Due == "" {
+			tasks.Due = time
+		}
+		fmt.Println(tasks.Due)
+		
+		fmt.Println("Enter tasks priority(4 is highest, 1 is lowest)")
+		priority, _ := scanner.ReadString('\n')
+		priority = strings.TrimSpace(priority)
+		Priority, err := strconv.Atoi(priority)
+		if err != nil {
+			log.Fatal("error")
+		}
+		tasks.Priority = Priority
+
 		tasks.DueLang = "en"
+
 		fmt.Println(tasks)		
-		apiToken := os.Getenv("TODOIST_API_TOKEn")
+
+		apiToken := os.Getenv("TODOIST_API_TOKEN")
 		if apiToken == "" {
 			log.Fatal("token not found")
 		}
@@ -46,12 +68,13 @@ var addCmd = &cobra.Command{
 		resp, err := client.R().
 			SetHeader("Content-Type", "application/json").
 			SetHeader("X-Request-Id", id ).
-			SetHeader("Authorizaition", "Bearer" + apiToken).
+			SetHeader("Authorization", " Bearer "+apiToken).
 			SetBody(tasks).
 			Post(todoistAPIBase + "/tasks")
 		
 		if err != nil {
 			log.Fatal("Couldn't add task")
 		}
+		fmt.Println(resp)
 	},
 }
