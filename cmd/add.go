@@ -11,6 +11,7 @@ import (
 	"time"
 	"strconv"
 	"strings"
+	
 )
 
 
@@ -51,6 +52,10 @@ var addCmd = &cobra.Command{
 		priority, _ := scanner.ReadString('\n')
 		priority = strings.TrimSpace(priority)
 		Priority, err := strconv.Atoi(priority)
+		if Priority < 1 || Priority > 4 {
+			fmt.Println("Priority has to be between 1 and 4")
+			os.Exit(1)
+		}
 		if err != nil {
 			log.Fatalf("error %s", err)
 		}
