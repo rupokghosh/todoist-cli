@@ -1,7 +1,6 @@
 package cmd
 
-func Done(id int) {
+func Done() {
 
-	// mark the task done and remove from view
 
 }

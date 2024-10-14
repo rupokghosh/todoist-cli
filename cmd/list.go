@@ -1,12 +1,13 @@
 package cmd
 
 import (
-    "encoding/json"
-    "fmt"
-    "log"
-    "os"
-    "github.com/go-resty/resty/v2"
-    "github.com/spf13/cobra"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/go-resty/resty/v2"
+	"github.com/spf13/cobra"
 )
 
 const todoistAPIBase = "https://api.todoist.com/rest/v2"
@@ -38,20 +39,24 @@ var listCmd = &cobra.Command{
 			Priority int `json:"priority"`
 			DueDate struct {
 				Date string `json:"date"`
+                IsRecurring bool `json:"is_recurring"`
 			} `json:"due"`
         }
-
         err = json.Unmarshal(resp.Body(), &tasks)
         if err != nil {
             log.Fatalf("Error parsing tasks: %v", err)
         }
-
+        
         if len(tasks) == 0 {
             fmt.Println("No active tasks found.")
             return
         }
         for i, task := range tasks {
-            fmt.Printf("%d. %s [Due: %s] [%s%d]\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority)
+            recurring := ""
+            if task.DueDate.IsRecurring {
+                recurring = "recurring task"
+            }
+            fmt.Printf("%d. %s [Due: %s] [%s%d] %s\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority, recurring)
         }
     },
 }
