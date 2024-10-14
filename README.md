@@ -9,16 +9,15 @@ Made with:
     - Resty
 
 ## Features
----
-- List all active tasks.
-      - ```bash todoist-cli list```
+- List all active tasks
+```bash todoist-cli list```
 - Add new tasks.
-      - ```bash todoist-cli add "My new task"```
+```bash todoist-cli add "My new task"```
 - Mark tasks as complete.
-    - ```todoist-cli done 2 // number of the task in the list```
+```todoist-cli done 2 // number of the task in the list```
 
-##Contributing
----
+## Contributing
+
 Feel free to fork this repository and submit pull requests to improve the functionality or fix bugs.
 
   
