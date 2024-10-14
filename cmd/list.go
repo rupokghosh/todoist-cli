@@ -12,6 +12,7 @@ import (
 
 const todoistAPIBase = "https://api.todoist.com/rest/v2"
 
+	
 func init () {
     rootCmd.AddCommand(listCmd)
 }
@@ -32,7 +33,7 @@ var listCmd = &cobra.Command{
         if err != nil {
             log.Fatalf("Error fetching tasks: %v", err)
         }
-
+        
         var tasks []struct {
             ID      string `json:"id"`
             Content string `json:"content"`
@@ -52,12 +53,14 @@ var listCmd = &cobra.Command{
             return
         }
         for i, task := range tasks {
+           
             recurring := ""
             if task.DueDate.IsRecurring {
                 recurring = "recurring task"
             }
             fmt.Printf("%d. %s [Due: %s] [%s%d] %s\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority, recurring)
         }
+       
     },
 }
 
