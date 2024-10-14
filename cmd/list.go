@@ -58,7 +58,8 @@ var listCmd = &cobra.Command{
             if task.DueDate.IsRecurring {
                 recurring = "recurring task"
             }
-            fmt.Printf("%d. %s [Due: %s] [%s%d] %s\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority, recurring)
+            // everything starting with \033 is just color coding
+            fmt.Printf("\033[36m%d %s \033[35m[Due: %s] \033[31m[%s%d] \033[36m%s\n\n", i+1, task.Content, task.DueDate.Date, "priority-", task.Priority, recurring)
         }
        
     },

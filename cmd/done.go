@@ -46,7 +46,7 @@ var doneCmd = &cobra.Command{
 			log.Fatalf("Couldn't close the task: %v", err)
 		}
 		_ = resp
-		fmt.Println("Task marked as finished!")
+		fmt.Println("\033[36mTask marked as finished!")
 	},
 }
 

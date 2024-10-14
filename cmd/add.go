@@ -79,6 +79,6 @@ var addCmd = &cobra.Command{
 			log.Fatal("Couldn't add task")
 		}
 		_ = resp 
-		fmt.Println("task successfully added!")
+		fmt.Println("\033[36mTask successfully added!")
 	},
 }
