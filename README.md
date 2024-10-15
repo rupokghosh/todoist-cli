@@ -11,15 +11,30 @@ Made with:
 
 ## How to use and API TOKEN setup
 
-To use this app, you would need to create an .env file
-and in that env file store your api token as:
-``` 
-TODOIST_API_TOKEN = whatever your token is
-```
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/todoist-cli.git
+   cd todoist-cli
+   ```
 
+2. Create a `.env` file at the root of the project and add your Todoist API token:
+   ```
+   TODOIST_API_TOKEN=your_api_token_here
+   ```
 To get your token:
 - Go to Settings > Integrations > Developer 
 - Then copy your API TOKEn
+
+3. Install the required dependencies:
+   ```
+   go get
+   ```
+
+4. Run the app:
+   ```
+   go run main.go
+   ```
+
 
 ## Features and Commands
 
