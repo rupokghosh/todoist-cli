@@ -25,7 +25,7 @@ Made with:
    To get your token:
 
 - Go to Settings > Integrations > Developer
-- Then copy your API TOKEn
+- Then copy your API TOKEN
 
 3. Install the required dependencies:
 
