@@ -39,18 +39,18 @@ Made with:
    ```
 5. Run the binary from the current directory:
 
-```zsh
-./todoist-cli list
-./todoist-cli add "Your task"
-./todoist-cli done 1
-```
+    ```zsh
+    ./todoist-cli list
+    ./todoist-cli add "Your task"
+    ./todoist-cli done 1
+    ```
 
 6. Additionally you can also use it without building a binary by doing:
 
-```zsh
-go run main.go list
-go run main.go add
-```
+    ```zsh
+    go run main.go list
+    go run main.go add
+    ```
 
 ## Features and Commands
 
